@@ -4,10 +4,12 @@ public class enemyspawner : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public GameObject boulder;
-    public float spawnRate = 4f;
+    public float spawnRate;// = 4f;
     private float timer = 0;
+    public float widthOffset; // = 15f;
+    public float spawnrateIncerase; // = 0.1f; // Ökning av spawn rate
 
-    public float widthOffset = 10f; 
+    public float minSpawnRate;// = 0.3f;
     void Start()
     {
         spawnBoulder();
@@ -18,12 +20,20 @@ public class enemyspawner : MonoBehaviour
     {
         if (timer < spawnRate)
         {
-            timer = timer + Time.deltaTime;
+            timer += Time.deltaTime;
         }
         else
         {
             spawnBoulder();
             timer = 0;
+
+            spawnRate -= spawnrateIncerase;
+
+            if (spawnRate < minSpawnRate)
+            {
+                spawnRate = minSpawnRate;
+            }
+
         }
 
     }

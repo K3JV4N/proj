@@ -7,7 +7,7 @@ public class player : MonoBehaviour
     public Rigidbody2D playerRigidbody;
     public float speed = 10f;
     private float rotationAngle = 90f;
-    public int lives = 3;
+    public int lives ;
 
     void Update()
     {
@@ -93,8 +93,14 @@ public class player : MonoBehaviour
     public void LoadScene()
     {
         Debug.Log("Scene loaded");
-        SceneManager.LoadScene("StartScene");
+        //SceneManager.LoadScene("StartScene");
+        Invoke("ReloadScene", 1f); // Delay to allow for game over message
     }
 
+
+    void ReloadScene()
+    {
+        SceneManager.LoadScene("StartScene");
+    }
 
 }

@@ -13,8 +13,8 @@ public class BackgroundScaler : MonoBehaviour
     float worldScreenHeight = Camera.main.orthographicSize * 2f;
     float worldScreenWidth = worldScreenHeight * Screen.width / Screen.height;
 
-    Debug.Log($"Sprite size: {width} x {height}");
-    Debug.Log($"World screen size: {worldScreenWidth} x {worldScreenHeight}");
+    //Debug.Log($"Sprite size: {width} x {height}");
+   // Debug.Log($"World screen size: {worldScreenWidth} x {worldScreenHeight}");
 
     transform.localScale = new Vector3(
         worldScreenWidth / width,

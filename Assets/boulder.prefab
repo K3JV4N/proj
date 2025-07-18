@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5405248642272564076}
   - component: {fileID: 4509070943615816850}
   - component: {fileID: 8316981804025615979}
+  - component: {fileID: 4566846569065258834}
   m_Layer: 7
   m_Name: boulder
   m_TagString: Untagged
@@ -179,6 +180,7 @@ MonoBehaviour:
   boulderSpeed: 4.4
   deadzone: -10
   carPassed: 0
+  textScript: {fileID: 0}
 --- !u!61 &8316981804025615979
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -225,3 +227,16 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 5, y: 8}
   m_EdgeRadius: 0
+--- !u!114 &4566846569065258834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763741905423967883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52dec96c45c173b42baf29f3a1a1aa6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carPassedText: {fileID: 0}

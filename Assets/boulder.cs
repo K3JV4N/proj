@@ -1,32 +1,29 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class boulder : MonoBehaviour
+public class Boulder : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
-    public float boulderSpeed = 1f; 
-    public float deadzone = -10f; 
-    public int carPassed; 
+    public float boulderSpeed = 1f;
+    public float deadzone = -15f;
+    public int carPassed;
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.position += (Vector3.down * boulderSpeed) * Time.deltaTime; 
-
-
-
-        if (transform.position.y < deadzone)
-        {
-            carPassed++;
-        //    Debug.Log("Boulder passed car " + carPassed);
-          //  Debug.Log("Boulder deleted ");
-            Destroy(gameObject);
-        }
-
+        transform.position += (Vector3.down * boulderSpeed) * Time.deltaTime;
 
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 8)
+        {
+
+            Destroy(gameObject);
+        }
+    }
+
 }
