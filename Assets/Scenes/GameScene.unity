@@ -274,8 +274,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boulder: {fileID: 763741905423967883, guid: 86927fde6bbcb394092408f7bddcf846, type: 3}
-  spawnRate: 1
-  widthOffset: 10
+  spawnRate: 2
+  widthOffset: 12
+  spawnrateIncerase: 0.1
+  minSpawnRate: 0.5
 --- !u!4 &492255010
 Transform:
   m_ObjectHideFlags: 0
@@ -559,7 +561,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerRigidbody: {fileID: 552262849}
   speed: 10
-  lives: 50
+  lives: 5
 --- !u!61 &552262852
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -790,6 +792,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &890078388
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 890078390}
+  - component: {fileID: 890078389}
+  m_Layer: 10
+  m_Name: Bikerspawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &890078389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890078388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bcaae0a703d15c478b166f9c3ae64c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Biker: {fileID: 3912639403139600319, guid: b45d87da17729ff49a1213596d1e58cc, type: 3}
+  spawnRate: 6
+  spawnrateIncrease: 0.1
+  minSpawnRate: 1
+  sideOffset: -50
+--- !u!4 &890078390
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890078388}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.07313, y: 8.04189, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1394599670
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -841,6 +892,10 @@ PrefabInstance:
     - target: {fileID: 763741905423967883, guid: 86927fde6bbcb394092408f7bddcf846, type: 3}
       propertyPath: m_Name
       value: boulder
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020528252360248040, guid: 86927fde6bbcb394092408f7bddcf846, type: 3}
+      propertyPath: m_Mass
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4509070943615816850, guid: 86927fde6bbcb394092408f7bddcf846, type: 3}
       propertyPath: TextScript
@@ -957,6 +1012,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carPassedText: {fileID: 1725784208}
   carPassed: 0
+  score: 0
 --- !u!1 &1701828736
 GameObject:
   m_ObjectHideFlags: 0
@@ -969,7 +1025,7 @@ GameObject:
   - component: {fileID: 1701828739}
   - component: {fileID: 1701828738}
   - component: {fileID: 1701828737}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1070,7 +1126,7 @@ GameObject:
   - component: {fileID: 1725784207}
   - component: {fileID: 1725784209}
   - component: {fileID: 1725784208}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: CarPassedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1093,8 +1149,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -867.6, y: 466}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -759.71387, y: 402.14954}
+  m_SizeDelta: {x: 400.5694, y: 275.7004}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1725784208
 MonoBehaviour:
@@ -1118,10 +1174,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: f4eec857a4fdf2f43be0e9f3d1a984e7, type: 3}
-    m_FontSize: 25
+    m_FontSize: 65
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
+    m_MinSize: 0
     m_MaxSize: 106
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -1129,10 +1185,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '
-
-
-'
+  m_Text: 
 --- !u!222 &1725784209
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1148,10 +1201,11 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 552262850}
-  - {fileID: 492255010}
   - {fileID: 684373662}
   - {fileID: 301858183}
   - {fileID: 125650185}
+  - {fileID: 492255010}
   - {fileID: 1394599670}
   - {fileID: 1701828740}
   - {fileID: 1694421234}
+  - {fileID: 890078390}

@@ -5,13 +5,15 @@ public class TriggerScipt : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    public Text carPassedText; 
+    public Text carPassedText;
     public int carPassed;
     public int score;
+
     void Start()
     {
 
-
+        carPassed = 0;
+        score = 0;
     }
 
 
@@ -24,8 +26,6 @@ public class TriggerScipt : MonoBehaviour
             carPassed++;
 
             score = carPassed / 2;
-            //Debug.Log("Car passed: " + carPassed);
-
 
             if (carPassedText != null)
             {
@@ -35,12 +35,15 @@ public class TriggerScipt : MonoBehaviour
 
         }
 
-/*         if (score >= 200)
+        if (score >= 200)
         {
-            SCENEMANAGER.LoadScene("GameOverScene");
+            //SCENEMANAGER.LoadScene("GameOverScene");
             Debug.Log("You win!");
         }
- */
+
+
+
+
     }
 
 }
