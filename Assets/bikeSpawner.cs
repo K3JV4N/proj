@@ -7,7 +7,8 @@ public class bikeSpawner : MonoBehaviour
     private float timer;
     public float spawnrateIncrease;
     public float minSpawnRate;
-    public float sideOffset;
+    public float sideOffset;        
+    public float Biker_yPosition;    
 
     void Start()
     {
@@ -25,9 +26,7 @@ public class bikeSpawner : MonoBehaviour
             spawnBike();
             timer = 0;
 
-            // Öka spawnraten (minska spawnintervall)
             spawnRate -= spawnrateIncrease;
-
             if (spawnRate < minSpawnRate)
             {
                 spawnRate = minSpawnRate;
@@ -37,11 +36,9 @@ public class bikeSpawner : MonoBehaviour
 
     void spawnBike()
     {
-        float spawnXPosition = Random.Range(0f, 1f) > 0.5f ? -sideOffset : Screen.width + sideOffset;
+        float Biker_xPosition = Random.Range(0f, 1f) > 0.5f ? -sideOffset : sideOffset;
 
-        Vector3 spawnPosition = Camera.main.ScreenToWorldPoint(new Vector3(spawnXPosition, Random.Range(0, Screen.height), 0));
-
-        spawnPosition.z = transform.position.z;
+        Vector3 spawnPosition = new Vector3(Biker_xPosition, Biker_yPosition, transform.position.z);
 
         Instantiate(Biker, spawnPosition, Quaternion.identity);
     }

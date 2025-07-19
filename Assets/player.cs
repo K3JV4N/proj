@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 public class player : MonoBehaviour
 {
     public Rigidbody2D playerRigidbody;
     public float speed = 10f;
     private float rotationAngle = 90f;
-    public int lives ;
+    public int lives;
+
+    public TriggerScript triggerScript;
 
     void Update()
     {
@@ -18,7 +19,6 @@ public class player : MonoBehaviour
         bool s = Input.GetKey(KeyCode.S);
         bool d = Input.GetKey(KeyCode.D);
 
-        // Identifiera kombination
         if (w && a && !s && !d)
         {
             moveDirection = new Vector2(-1, 1).normalized;
@@ -59,48 +59,51 @@ public class player : MonoBehaviour
             moveDirection = Vector2.right;
             rotationAngle = 0f;
         }
-        else
-        {
-            moveDirection = Vector2.zero; // ingen input
-        }
 
         transform.rotation = Quaternion.Euler(0, 0, rotationAngle);
-
         playerRigidbody.linearVelocity = moveDirection * speed;
     }
 
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 7) // Layer 7 is the boulder layer
+        if (collision.gameObject.layer == 7) // boulder
         {
-            Debug.Log("Player hit by boulder");
+            //Debug.Log("Player hit by boulder");
             lives--;
-            Debug.Log("Lives left: " + lives);
+            // Debug.Log("Lives left: " + lives);
+
+
             if (lives <= 0)
             {
-                Debug.Log("Game Over");
+                Debug.Log("Game Over INSER GAMEOVER SCENE HERE");
                 LoadScene();
             }
+        }
 
+        if (collision.gameObject.layer == 10) // biker
+        {
+            //Debug.Log("DONT TOUCH THE BIKER");
 
-      
+            if (triggerScript != null)
+            {
+                triggerScript.score -= 5;
+                triggerScript.UpdateScore();
+            }
+            else
+            {
+                Debug.LogWarning("TriggerScript is not assigned in player script.");
+            }
         }
     }
-
 
     public void LoadScene()
     {
         Debug.Log("Scene loaded");
-        //SceneManager.LoadScene("StartScene");
-        Invoke("ReloadScene", 1f); // Delay to allow for game over message
+        Invoke("ReloadScene", 1f); // delay for effect
     }
-
 
     void ReloadScene()
     {
         SceneManager.LoadScene("StartScene");
     }
-
 }
